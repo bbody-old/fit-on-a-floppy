@@ -16,5 +16,5 @@ def handler(event, context):
     return response
 
 if __name__ == '__main__':
-    event = {"body": "{\"url\": \"www.brendonbody.com\", \"protocol\":\"https\"}"}
+    event = {"body": "{\"url\": \"fitonafloppy.website.s3-website-us-west-2.amazonaws.com/\", \"protocol\":\"https\"}"}
     print(json.dumps(handler(event, None), indent = 4, sort_keys=True))

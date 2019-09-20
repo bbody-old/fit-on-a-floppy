@@ -6,13 +6,20 @@ import math
 
 class Website:
     FLOPPY_SIZE = 1423.5*1024
+    @staticmethod
+    def parseFriendlyURL(url):
+        url = url.replace('https://', '')
+        url = url.replace('http://', '')
+        return url
     def __init__(self, url, protocol):
-        self.url = protocol + "://" + url
-        self.friendly_url = url
+        self.url = url
+        self.friendly_url = Website.parseFriendlyURL(url)
         self.js_files = []
         self.css_files = []
         self.image_files = []
-    
+        self.html_size = 0
+        self.favicon = False
+        self.title = ''
     def parseWebsite(self):
         page = requests.get(self.url, stream=True)
         content = BeautifulSoup(page.content, 'html.parser')
@@ -45,10 +52,6 @@ class Website:
         with file_request as response:
             size = sum(len(chunk) for chunk in response.iter_content(8196))
         return size
-        # if ('Content-length' in file_request.headers.keys()):
-        #     return file_request.headers['Content-length']
-        # else:
-        #     return len(file_request.content) * 8
     @staticmethod
     def getTotalSize(files):
         totalSize = 0
