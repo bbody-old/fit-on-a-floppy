@@ -3,9 +3,8 @@ from Website import Website
 
 def handler(event, context):
     url = json.loads(event['body'])['url']
-    protocol = json.loads(event['body'])['protocol']
 
-    website = Website(url, protocol)
+    website = Website(url)
     response = website.getWebsiteContent()
     
     response['headers'] = {
@@ -16,5 +15,5 @@ def handler(event, context):
     return response
 
 if __name__ == '__main__':
-    event = {"body": "{\"url\": \"fitonafloppy.website.s3-website-us-west-2.amazonaws.com/\", \"protocol\":\"https\"}"}
+    event = {"body": "{\"url\": \"fitonafloppy.website.s3-website-us-west-2.amazonaws.com/\"}"}
     print(json.dumps(handler(event, None), indent = 4, sort_keys=True))

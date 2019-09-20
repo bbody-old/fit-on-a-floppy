@@ -5,14 +5,8 @@ import urllib.parse
 import math
 
 class Website:
-    FLOPPY_SIZE = 1423.5*1024
-    @staticmethod
-    def parseFriendlyURL(url):
-        url = url.replace('https://', '')
-        url = url.replace('http://', '')
-        return url
-    def __init__(self, url, protocol):
-        self.url = url
+    def __init__(self, url):
+        self.url = Website.parseURL(url)
         self.friendly_url = Website.parseFriendlyURL(url)
         self.js_files = []
         self.css_files = []
@@ -47,13 +41,61 @@ class Website:
         else:
             favicon = False
         self.favicon = favicon
+    def setJSFiles(self, content):
+        js_files = content.select('script[src]:not([async])')
+        self.js_files = Website.parse_files('Scripts', self.url, js_files, 'src')
+    def setCSSFiles(self, content):
+        css_files = content.select('link[rel="stylesheet"]')
+        self.css_files = Website.parse_files('Styles and Fonts', self.url, css_files, 'href')
+    def setImageFiles(self, content):
+        image_query = content.select('img')
+        image_files = []
+
+        for image in image_query:
+            if (not image['src'].startswith('data:')):
+                image_files.append(image)
+
+        self.image_files = Website.parse_files('Images', self.url, image_files, 'src')
+    def getTotalSize(self):
+        return self.html_size + self.css_files['total_size'] + self.js_files['total_size'] + self.image_files['total_size']
+    def getWebsiteContent(self):
+        try:
+            self.parseWebsite()
+            totalSize = self.getTotalSize()
+            data = {
+                'title': self.title,
+                'favicon': self.favicon,
+                'js_files': self.js_files,
+                'css_files': self.css_files,
+                'image_files': self.image_files,
+                'html_size': self.html_size,
+                'url': self.url,
+                'friendly_url': self.friendly_url,
+                'total_size': totalSize,
+                'floppy_size': Website.FLOPPY_SIZE,
+                'floppies': math.ceil(totalSize/Website.FLOPPY_SIZE)
+            }
+            
+            return {
+                'statusCode': str(200),
+                'body': data,
+            }
+        except:
+            return {
+                'statusCode': str(400),
+                'body': {
+                    'error': 'Error in processing website'
+                },
+            }
+    # Static values and functions
+    FLOPPY_SIZE = 1423.5*1024
     @staticmethod
     def calculate_file_size(file_request):
         with file_request as response:
             size = sum(len(chunk) for chunk in response.iter_content(8196))
         return size
     @staticmethod
-    def getTotalSize(files):
+    def get_total_size(files):
         totalSize = 0
         for f in files:
             totalSize += f['file_size']
@@ -81,43 +123,15 @@ class Website:
         return {
             'files': parsed_files,
             'title': title,
-            'total_size': Website.getTotalSize(parsed_files)
+            'total_size': Website.get_total_size(parsed_files)
         }
-
-    def setJSFiles(self, content):
-        js_files = content.select('script[src]:not([async])')
-        self.js_files = Website.parse_files('Scripts', self.url, js_files, 'src')
-    def setCSSFiles(self, content):
-        css_files = content.select('link[rel="stylesheet"]')
-        self.css_files = Website.parse_files('Styles and Fonts', self.url, css_files, 'href')
-    def setImageFiles(self, content):
-        image_query = content.select('img')
-        image_files = []
-
-        for image in image_query:
-            if (not image['src'].startswith('data:')):
-                image_files.append(image)
-
-        self.image_files = Website.parse_files('Images', self.url, image_files, 'src')
-    def getWebsiteContent(self):
-        self.parseWebsite()
-        totalSize = self.html_size + self.css_files['total_size'] + self.js_files['total_size'] + self.image_files['total_size']
-        data = {
-            'title': self.title,
-            'favicon': self.favicon,
-            'js_files': self.js_files,
-            'css_files': self.css_files,
-            'image_files': self.image_files,
-            'html_size': self.html_size,
-            'url': self.url,
-            'friendly_url': self.friendly_url,
-            'total_size': totalSize,
-            'floppy_size': Website.FLOPPY_SIZE,
-            'floppies': math.ceil(totalSize/Website.FLOPPY_SIZE)
-        }
-        
-        return {
-            'statusCode': str(200),
-            'body': data,
-        }
-    
+    @staticmethod
+    def parseFriendlyURL(url):
+        url = url.replace('https://', '')
+        url = url.replace('http://', '')
+        return url
+    @staticmethod
+    def parseURL(url):
+        if (('https://' not in url) and ('http://' not in url)):
+            return 'https://' + url
+        return url
