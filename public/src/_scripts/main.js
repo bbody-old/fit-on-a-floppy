@@ -5,14 +5,12 @@
 
 import $ from 'jquery';
 var addHelpers = require('../_templates/helpers.js'); 
+addHelpers(Handlebars);
 
 window.onSubmit = function(event) {
   event.preventDefault();
-  
-  var protocol = event.currentTarget[0].value;
+
   var url = event.currentTarget[1].value;
-  url = url.replace('https://', '');
-  url = url.replace('http://', '');
 
   $.ajax({                     
       type: "POST",                     
@@ -35,4 +33,3 @@ window.onSubmit = function(event) {
   }); 
 }
 
-addHelpers(Handlebars);

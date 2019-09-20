@@ -22,16 +22,10 @@
               <h2>Will it fit?</h2>
             </div>
             <div class="row">
-              <div class="two columns">
-                  <select id="protocol" name="protocol" class="u-full-width" >
-                    <option value="https">https://</option>
-                    <option value="http">http://</option>
-                  </select>
-              </div>
-              <div class="seven columns">
+              <div class="eight columns">
                 <input class="u-full-width" placeholder="Website" id="website" name="website" type="url" />
               </div>
-              <div class="three columns">
+              <div class="four columns">
                   <input class="button-primary u-full-width" type="submit" value="Go!" />
               </div>
             </div>
