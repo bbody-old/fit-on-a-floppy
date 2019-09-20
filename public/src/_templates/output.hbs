@@ -1,0 +1,59 @@
+<div class="row">
+    {{#if favicon}}
+    <div class="two columns">
+        <img src="{{favicon}}" alt="{{title}}" />
+    </div>
+    <div class="ten columns">
+    {{else}}
+    <div class="twelve columns">
+    {{/if}}
+        <h2>{{trim title}}</h2>
+        <small>
+            <a href="{{url}}">
+                {{friendly_url}}
+            </a>
+        </small>
+    </div>
+    <div class="row">
+        <table class="u-full-width">
+            <thead>
+                <tr>
+                    <td>Type</td>
+                    <td>Filename</td>
+                    <td>Size (kb)</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HTML</td>
+                    <td>Static</td>
+                    <td>{{showSize html_size}}</td>
+                </tr>
+                {{> multilineTableRow js_files }}
+                {{> multilineTableRow image_files }}
+                {{> multilineTableRow css_files }}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">All files</td>
+                    <td>
+                        {{showSize total_size}} fitting on {{floppies}} floppies
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Floppy {{times floppies "💾"}}</td>
+                    <td>
+                        {{showSize floppy_size}}
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="row">
+        <h3>Congratulations, your website can fit on a floppy!</h3>
+        <div class='embed-container'>
+            <iframe src='https://www.youtube.com/embed/wy7ZBX9BTUA' frameborder='0' allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</div>

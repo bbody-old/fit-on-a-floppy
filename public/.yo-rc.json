@@ -1,0 +1,12 @@
+{
+  "generator-yeogurt": {
+    "config": {
+      "projectName": "Fit On A Floppy",
+      "htmlOption": "nunjucks",
+      "cssOption": "sass",
+      "sassSyntax": "sass",
+      "testFramework": "jasmine"
+    },
+    "version": "3.0.1"
+  }
+}

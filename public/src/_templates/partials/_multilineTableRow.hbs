@@ -1,0 +1,29 @@
+{{#if files.length}}
+    <tr>
+        <td rowspan="{{rowspan files}}">
+            {{title}}
+        </td>
+    </tr>
+    {{#each files as |file index| }}
+        <tr>
+            <td>
+                <a href="{{file.file_path}}">
+                    {{trim file.filename}}
+                </a>
+            </td>
+            <td>
+                {{showSize file.file_size}}
+            </td>
+        </tr>
+    {{/each}}
+    <tr>
+        <td>
+            <strong>
+                Total
+            </strong>
+        </td>
+        <td>
+            {{showSize total_size}}
+        </td>
+    </tr>
+{{/if}}
