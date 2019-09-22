@@ -62,6 +62,7 @@ class Website:
         try:
             self.parseWebsite()
             totalSize = self.getTotalSize()
+
             data = {
                 'title': self.title,
                 'favicon': self.favicon,
@@ -78,7 +79,7 @@ class Website:
             
             return {
                 'statusCode': str(200),
-                'body': data,
+                'body': json.dumps(data),
             }
         except:
             return {
