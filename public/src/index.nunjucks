@@ -1,41 +1,42 @@
 {% extends '_layouts/base.nunjucks' %}
 
 {% block content %}
-<div class="section values">
-    <div class="container">
-      <div class="row">
-        <div class="two-thirds column value">
-            <h1>Fit on a Floppy</h1>
-            <strong>1.44mb</strong> <span>Floppy Disk capacity</span>
-            <p>
+  <div class="container">
+    <div class="row">
+      <div class="two-thirds column value">
+          <h1>Fit on a Floppy</h1>
+          <strong>1.44mb</strong> <span>Floppy Disk capacity</span>
+          <p>
 
-            </p>
-        </div>
-        <div class="one-third column value">
-            <img src="./images/floppy.jpg" alt="Single Floppy Disk" class="u-max-full-width" />
-        </div>
+          </p>
       </div>
-      <hr/>
-      <div class="row">
-        <form onsubmit="onSubmit(event)">
-            <div class="row">
-              <h2>Will it fit?</h2>
-            </div>
-            <div class="row">
-              <div class="eight columns">
-                <input class="u-full-width" placeholder="Website" id="website" name="website" type="url" />
-              </div>
-              <div class="four columns">
-                  <input class="button-primary u-full-width" type="submit" value="Go!" />
-              </div>
-            </div>
-          </form>
+      <div class="one-third column value">
+          <img src="./images/floppy.jpg" alt="Single Floppy Disk" class="u-max-full-width" />
       </div>
-      <hr/>
-      <div id="outputRow" class="row">
-          <div id="output" class="twelve columns">
+    </div>
+    <hr/>
+    <div id="inputRow" class="row">
+      <form onsubmit="onSubmit(event)">
+          <div class="row">
+            <h2>Will it fit?</h2>
           </div>
-      </div>
+          <div class="row">
+            <div class="eight columns">
+              <input class="u-full-width" placeholder="Website" id="website" name="website" type="url" required="required" />
+            </div>
+            <div class="four columns">
+                <button type="submit" class="button-primary u-full-width">
+                  Go! <div class="lds-dual-ring"></div>
+                </button>
+            </div>
+          </div>
+        </form>
+    </div>
+    <hr/>
+    <div id="outputRow" class="row">
+        <div class="loader"></div>
+        <div id="output" class="twelve columns">
+        </div>
     </div>
   </div>
 {% endblock %}
