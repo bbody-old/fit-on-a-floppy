@@ -49,11 +49,20 @@
             </tfoot>
         </table>
     </div>
-    <div class="row">
-        <h3>Congratulations, your website can fit on a floppy!</h3>
-        <div class='embed-container'>
-            <iframe src='https://www.youtube.com/embed/wy7ZBX9BTUA' frameborder='0' allowfullscreen>
-            </iframe>
+    {{#if moreThanOneFloppy}}
+        <div class="row">
+            <h3>Congratulations, your website can fit on a floppy!</h3>
+            <div class='embed-container'>
+                <iframe src='https://www.youtube.com/embed/wy7ZBX9BTUA' frameborder='0' allowfullscreen>
+                </iframe>
+            </div>
         </div>
-    </div>
+    {{else}}
+        <div class="row">
+            <h3>Unfortunately, your website cannot fit on a floppy!</h3>
+            <p>
+                Don't fear, there are things you can do to decrease page load size!
+            </p>
+        </div>
+    {{/if}}
 </div>

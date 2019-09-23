@@ -1,34 +1,66 @@
-// Main javascript entry point
-// Should handle bootstrapping/starting application
-
 'use strict';
 
-import $ from 'jquery';
-var addHelpers = require('../_templates/helpers.js'); 
+var addHelpers = require('../_templates/helpers.js');
+
 addHelpers(Handlebars);
 
-window.onSubmit = function(event) {
-  event.preventDefault();
-  var query = '#outputRow,#inputRow';
-  var url = event.currentTarget[0].value;
-  $(query).addClass('loading');
-  $.ajax({                     
-      type: "POST",                     
-      url: 'https://7udyio7rpg.execute-api.us-west-2.amazonaws.com/default/pageSize',
-      contentType: 'application/json',      
-      data: JSON.stringify({
-          url
-      }),                     
-      success: function(res){
-          var html = window.foaf.output(res);
-          $('#output').html(html);
-          $(query).removeClass('loading').addClass('loaded');
-      },
-      error: function(error){
-        var html = window.foaf.error();
-        $('#output').html(html);
-        $(query).removeClass('loading').addClass('loaded');
-      }
-  }); 
+var ids = ['outputRow','inputRow'];
+
+function addClass(className) {
+    for (var i = 0; i < ids.length; i++) {
+        document.getElementById(ids[i]).classList.add(className);
+    }
+}
+
+function removeClass(className) {
+    for (var i = 0; i < ids.length; i++) {
+        document.getElementById(ids[i]).classList.remove(className);
+    }
+}
+
+function outputMessage(html) {
+    document.getElementById('output').innerHTML = html;
+    
+    removeClass('loading');
+    addClass('loaded');
+}
+
+function showError() {
+    var html = window.foaf.error();
+    
+    outputMessage(html);
+}
+
+function showResults(data) {
+    data.moreThanOneFloppy = data.floppies === 1;
+    var html = window.foaf.output(data);
+
+    outputMessage(html);
+}
+
+
+window.onSubmit = function (event) {
+    event.preventDefault();
+    
+    addClass('loading');
+
+    var endpointURL = 'https://7udyio7rpg.execute-api.us-west-2.amazonaws.com/default/pageSize';
+    var url = event.currentTarget[0].value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', endpointURL);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+        if (xhr.status !== 200) {
+            showError();
+        } else {
+            var json = JSON.parse(xhr.responseText);
+            showResults(json);
+        }
+    };
+    xhr.onerror = showError;
+    xhr.send(JSON.stringify({
+        url
+    }));
 }
 
