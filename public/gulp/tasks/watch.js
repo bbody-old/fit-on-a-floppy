@@ -34,6 +34,12 @@ gulp.task('watch', (done) => {
       path.join(dirs.source, dirs.images) + '/**/*.{jpg,jpeg,gif,svg,png}'
     ], gulp.series('imagemin'));
 
+    // Handlebars
+
+    gulp.watch([
+      path.join(dirs.source, dirs.templates) + '/**/*.hbs'
+    ], gulp.series('handlebars'));
+
     // All other files
     gulp.watch([
       dirs.temporary + '/**/*',

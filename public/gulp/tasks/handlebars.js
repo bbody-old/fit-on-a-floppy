@@ -17,6 +17,7 @@ var gulp_handlebars = require('gulp-handlebars');
 var wrap = require('gulp-wrap');
 var declare = require('gulp-declare');
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
  
 gulp.task('handlebars', function(){
   var partials = gulp.src(entries.handlebars, { cwd: path.join(dirs.source, dirs.templates, 'partials')})
@@ -41,6 +42,7 @@ gulp.task('handlebars', function(){
 
     return merge(partials, templates)
       .pipe(concat('templates.js'))
+      .pipe(uglify())
       .pipe(gulp.dest(dest))
       .pipe(browserSync.stream({ match: 'scripts/templates**.js' }));
 });
