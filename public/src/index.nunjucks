@@ -3,15 +3,41 @@
 {% block content %}
   <div class="container">
     <div class="row">
-      <div class="two-thirds column value">
-          <h1>Fit on a Floppy</h1>
-          <strong>1.44mb</strong> <span>Floppy Disk capacity</span>
-          <p>
-
-          </p>
+      <h1>Fit on a Floppy</h1>
+      <strong>1.44mb</strong> <span>Floppy Disk capacity</span>
+    </div>
+    <div class="row">
+      <div class="two-thirds column value" id="content">
+          <div class="row">
+            <div class="one-half column">
+              <p>
+                Websites are getting bigger and bigger. The internet is getting faster and faster but not everywhere at the same pace. I find that a physical reminder of how big your site really is very useful.
+              </p>
+            </div>
+            <div class="one-half column">
+              How long to <href a="https://kenstechtips.com/index.php/download-speeds-2g-3g-and-4g-actual-meaning">download on various mobile devices</a>:
+              <ul>
+                <li>
+                  <strong>2G EDGE (0.1Mbit/s):</strong> 2 minutes
+                </li>
+                <li>
+                  <strong>3G HSPA (~1.5Mbit/s):</strong> 8 seconds
+                </li>
+                <li>
+                  <strong>4G LTE Category 4 (~15Mbit/s):</strong> less than 1 second
+                </li>
+                <li>
+                  <strong>5G (~150Mbit/s):</strong> less than 1 second
+                </li>
+              </ul>
+            </div>
+          </div>
       </div>
-      <div class="one-third column value">
+      <div class="one-third column value hide-on-mobile">
           <img src="./images/floppy.jpg" alt="Single Floppy Disk" class="u-max-full-width" />
+          <small>
+            <a href="https://twitter.com/bill_gross/status/920406104911233024?lang=en">3D Printed Save Icon
+          </small>
       </div>
     </div>
     <hr/>
@@ -29,6 +55,15 @@
                   Go! <div class="lds-dual-ring"></div>
                 </button>
             </div>
+          </div>
+          <div class="row">
+            <strong>Ignored filetypes:</strong>
+            <ul>
+              <li>Video</li>
+              <li>Audio</li>
+              <li>PDF</li>
+              <li>Files other than images, stylesheets, fonts and JavaScript</li>
+            </ul>
           </div>
         </form>
     </div>
