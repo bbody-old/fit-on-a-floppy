@@ -1,6 +1,8 @@
 import json
 from Website import Website
 
+origin = "http://fitonafloppy.website"
+
 def handler(event, context):
     url = json.loads(event['body'])['url']
 
@@ -11,7 +13,7 @@ def handler(event, context):
     
     response['headers'] = {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': origin
     }
     
     return response
