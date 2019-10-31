@@ -41,7 +41,7 @@
     <![endif]-->
 
     {% block content %}{% endblock %}
-
+    <div id="codefund"></div>
     <script src="https://cdn.jsdelivr.net/npm/classlist-polyfill@1.2.0/src/index.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.2.0/handlebars.runtime.min.js"></script>
     <script src="{{baseUrl}}scripts/main.js"></script>
@@ -57,7 +57,10 @@
         gtag('config', 'UA-151167396-1');
       }
     </script>
-
+    <script
+      src="https://codefund.io/properties/551/funder.js"
+      async="async"
+    ></script>
     {% block scripts %}{% endblock %}
   </body>
 </html>
