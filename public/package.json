@@ -74,7 +74,7 @@
     "format": "npx prettier --single-quote --write src/**/*.js",
     "serve": "NODE_ENV=development npx gulp serve",
     "serve:prod": "NODE_ENV=production npx gulp serve --production",
-    "build": "NODE_ENV=production npx gulp --production",
+    "build": "gulp handlebars && NODE_ENV=production npx gulp --production",
     "deploy": "s3-deploy './build/**' --cwd './build/' --region=us-west-2 --bucket=fitonafloppy.website --deleteRemoved --gzip=xml,html,htm,js,css,ttf,otf,svg,txt"
   },
   "engines": {
