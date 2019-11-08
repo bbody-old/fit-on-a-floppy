@@ -1,5 +1,6 @@
 'use strict';
 
+var endpointURL = 'https://7udyio7rpg.execute-api.us-west-2.amazonaws.com/default/pageSize';
 var addHelpers = require('../_templates/helpers.js');
 
 addHelpers(Handlebars);
@@ -44,17 +45,12 @@ function showResults(data) {
     outputMessage(html);
 }
 
-
-window.onSubmit = function (event) {
-    event.preventDefault();
+function checkIfItWillFit(url) {
     toggleAlert(false);
     document.getElementById('output').innerHTML = '';
     document.getElementById('alert').innerHTML = '';
     removeClass('loaded');
     addClass('loading');
-    
-    var endpointURL = 'https://7udyio7rpg.execute-api.us-west-2.amazonaws.com/default/pageSize';
-    var url = event.currentTarget[0].value;
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', endpointURL);
@@ -65,6 +61,13 @@ window.onSubmit = function (event) {
         } else {
             var json = JSON.parse(xhr.responseText);
             showResults(json);
+
+            if (window.history.pushState) {
+                var newUrl = location.origin + "?website=" + url;
+                var title = "Fit on a Floppy - " + json.title;
+                document.title = title;
+                history.pushState({}, null, newUrl);
+            }
         }
     };
     xhr.onerror = showError;
@@ -72,4 +75,20 @@ window.onSubmit = function (event) {
         url
     }));
 }
+
+window.onSubmit = function (event) {
+    event.preventDefault();
+
+    checkIfItWillFit(event.currentTarget[0].value);
+};
+
+window.onload = function () {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has('website')) {
+        var website = urlParams.get('website');
+        document.getElementById('website').value = website;
+        checkIfItWillFit(urlParams.get('website'));
+    }
+};
 
