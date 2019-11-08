@@ -19,5 +19,5 @@ def handler(event, context):
     return response
 
 if __name__ == '__main__':
-    event = {"body": "{\"url\": \"https://wwww.bonds.com.au\"}"}
+    event = {"body": "{\"url\": \"http://wwww.fitonafloppy.website\"}"}
     print(json.dumps(handler(event, None), indent = 4, sort_keys=True))
