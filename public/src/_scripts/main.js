@@ -25,10 +25,16 @@ function outputMessage(html) {
     addClass('loaded');
 }
 
+function toggleAlert(show) {
+    var alert = document.getElementById('alert');
+    alert.style.display = show ? 'block' : 'none';
+}
+
 function showError() {
-    var html = window.foaf.error();
-    
-    outputMessage(html);
+    var errorMessage = 'Unfortunately we couldn\'t load that website, can you recheck your URL or try again?';
+    toggleAlert(true);
+    document.getElementById('alert').innerHTML = errorMessage;
+    removeClass('loading');
 }
 
 function showResults(data) {
@@ -41,7 +47,9 @@ function showResults(data) {
 
 window.onSubmit = function (event) {
     event.preventDefault();
+    toggleAlert(false);
     document.getElementById('output').innerHTML = '';
+    document.getElementById('alert').innerHTML = '';
     removeClass('loaded');
     addClass('loading');
     

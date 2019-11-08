@@ -53,14 +53,13 @@
           </small>
         </div>
       </div>
-      <hr/>
       <div id="inputRow" class="row">
         <form onsubmit="onSubmit(event)">
           <div class="row">
             <h2>Will it fit?</h2>
           </div>
           <div class="row">
-            <p class="alert alert-error" style="display: none">test</p>
+            <p id="alert" class="alert alert-error" style="display: none">test</p>
           </div>
           <div class="row">
             <div class="eight columns">
@@ -76,7 +75,8 @@
       </div>
       <div id="outputRow" class="row">
         <div class="loader"></div>
-        <div id="output" class="twelve columns"></div>
+        <div id="output" class="twelve columns">
+        </div>
       </div>
       <div id="tipsRow" class="row">
         <h3>Some tips to reduce page size</h3>
