@@ -1,8 +1,16 @@
 // helpers.js
 function addHelpers(hb) {
-    hb.registerHelper('showSize', function(str){
-        var sizeKB = parseInt(str)/1024;
-       return sizeKB.toFixed(2) + "kb";
+    hb.registerHelper('showSize', function(bytes, kilobytes, kibibytes){
+        var result = "";
+        var sizeKilobytes = parseFloat(kilobytes).toFixed(2);
+        var sizeKibibytes = parseFloat(kibibytes).toFixed(2);
+        var sizeBytes = parseFloat(bytes);
+
+        result += sizeKilobytes + "kB / ";
+        result += sizeKibibytes + "KiB";
+        result = "<abbr title=\"" + sizeBytes + " bytes" + "\">" + result + "</abbr>";
+
+        return result;
     });
 
     hb.registerHelper('trim', function(str) {

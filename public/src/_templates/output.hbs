@@ -38,19 +38,19 @@
             <tr class="summary">
                 <td colspan="2">All files</td>
                 <td>
-                    {{showSize total_size}} fitting on {{floppies}} floppies
+                    {{{showSize total_size_bytes total_size_kilobytes total_size_kibibytes}}} fitting on {{floppies}} floppies
                 </td>
             </tr>
             <tr class="summary">
                 <td colspan="2">Floppy {{times floppies "💾"}}</td>
                 <td>
-                    {{showSize floppy_size}}
+                    {{{showSize floppy_size_bytes floppy_size_kilobytes floppy_size_kibibytes}}}
                 </td>
             </tr>
             <tr>
                 <td>HTML</td>
-                <td>Static</td>
-                <td>{{showSize html_size}}</td>
+                <td></td>
+                <td>{{{showSize html_size_bytes html_size_kilobytes html_size_kibibytes}}}</td>
             </tr>
             {{> multilineTableRow js_files }}
             {{> multilineTableRow image_files }}

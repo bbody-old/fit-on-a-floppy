@@ -12,7 +12,7 @@
                 </a>
             </td>
             <td>
-                {{showSize file.file_size}}
+                {{{showSize file.bytes file.kilobytes file.kibibytes}}}
             </td>
         </tr>
     {{/each}}
@@ -23,7 +23,7 @@
             </strong>
         </td>
         <td>
-            {{showSize total_size}}
+            {{{showSize total_size_bytes total_size_kilobytes total_size_kibibytes}}}
         </td>
     </tr>
 {{/if}}

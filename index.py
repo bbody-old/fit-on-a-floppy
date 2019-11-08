@@ -1,7 +1,7 @@
 import json
 from Website import Website
 
-origin = "http://fitonafloppy.website"
+origin = "*"
 
 def handler(event, context):
     url = json.loads(event['body'])['url']
@@ -19,5 +19,6 @@ def handler(event, context):
     return response
 
 if __name__ == '__main__':
-    event = {"body": "{\"url\": \"http://fitonafloppy.website.s3-website-us-west-2.amazonaws.com/\"}"}
-    print(json.dumps(handler(event, None), indent = 4, sort_keys=True))
+    event = {"body": "{\"url\": \"https://wwww.bonds.com.au\"}"}
+    # print(json.dumps(, indent = 4, sort_keys=True))
+    handler(event, None)

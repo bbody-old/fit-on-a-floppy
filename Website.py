@@ -11,13 +11,14 @@ class Website:
         self.js_files = []
         self.css_files = []
         self.image_files = []
-        self.html_size = 0
         self.favicon = False
         self.title = ''
     def parseWebsite(self):
+        print(self.url)
         page = requests.get(self.url, stream=True)
         content = BeautifulSoup(page.content, 'html.parser')
-        self.html_size = int(Website.calculate_file_size(page))
+
+        self.html_sizes = Website.calculate_file_size(page)
 
         self.setTitle(content)
         self.setFavicon(content)
@@ -57,7 +58,7 @@ class Website:
 
         self.image_files = Website.parse_files('Images', self.url, image_files, 'src')
     def getTotalSize(self):
-        return self.html_size + self.css_files['total_size'] + self.js_files['total_size'] + self.image_files['total_size']
+        return self.html_sizes['bytes'] + self.css_files['total_size_bytes'] + self.js_files['total_size_bytes'] + self.image_files['total_size_bytes']
     def getWebsiteContent(self):
         try:
             self.parseWebsite()
@@ -69,11 +70,17 @@ class Website:
                 'js_files': self.js_files,
                 'css_files': self.css_files,
                 'image_files': self.image_files,
-                'html_size': self.html_size,
+                'html_size_bytes': self.html_sizes['bytes'],
+                'html_size_kibibytes': self.html_sizes['kibibytes'],
+                'html_size_kilobytes': self.html_sizes['kilobytes'],
                 'url': self.url,
                 'friendly_url': self.friendly_url,
-                'total_size': totalSize,
-                'floppy_size': Website.FLOPPY_SIZE,
+                'total_size_bytes': totalSize,
+                'total_size_kibibytes': totalSize/Website.BYTES_PER_KIB,
+                'total_size_kilobytes': totalSize/Website.BYTES_PER_KB,
+                'floppy_size_bytes': Website.FLOPPY_SIZE,
+                'floppy_size_kibibytes': Website.FLOPPY_SIZE/Website.BYTES_PER_KIB,
+                'floppy_size_kilobytes': Website.FLOPPY_SIZE/Website.BYTES_PER_KB,
                 'floppies': math.ceil(totalSize/Website.FLOPPY_SIZE)
             }
             
@@ -81,7 +88,8 @@ class Website:
                 'statusCode': str(200),
                 'body': json.dumps(data),
             }
-        except:
+        except Exception as e:
+            print(e)
             return {
                 'statusCode': str(400),
                 'body': {
@@ -89,17 +97,24 @@ class Website:
                 },
             }
     # Static values and functions
-    FLOPPY_SIZE = 1423.5*1024
+    FLOPPY_SIZE = 1474560.0
+    BYTES_PER_KIB = 1024.0
+    BYTES_PER_KB = 1000.0
     @staticmethod
     def calculate_file_size(file_request):
         with file_request as response:
-            size = sum(len(chunk) for chunk in response.iter_content(8196))
-        return size
+            size = sum(len(chunk) for chunk in response.iter_content(8))
+
+        return {
+            'bytes': size,
+            'kibibytes': size/Website.BYTES_PER_KIB,
+            'kilobytes': size/Website.BYTES_PER_KB
+        }
     @staticmethod
     def get_total_size(files):
         totalSize = 0
         for f in files:
-            totalSize += f['file_size']
+            totalSize += f['bytes']
         return totalSize
     @staticmethod
     def parse_files(title, url, files, attribute):
@@ -114,17 +129,22 @@ class Website:
             
             asset_file = requests.get(full_filename, stream=True)
 
-            file_size = Website.calculate_file_size(asset_file)
+            file_sizes = Website.calculate_file_size(asset_file)
 
             parsed_files.append({
                 'file_path': full_filename,
                 'filename': filename,
-                'file_size': int(file_size)
+                'bytes': file_sizes['bytes'],
+                'kibibytes': file_sizes['kibibytes'],
+                'kilobytes': file_sizes['kilobytes'],
             })
+        total_size = Website.get_total_size(parsed_files)
         return {
             'files': parsed_files,
             'title': title,
-            'total_size': Website.get_total_size(parsed_files)
+            'total_size_bytes': total_size,
+            'total_size_kibibytes': total_size / Website.BYTES_PER_KIB,
+            'total_size_kilobytes': total_size / Website.BYTES_PER_KB
         }
     @staticmethod
     def parseFriendlyURL(url):
