@@ -14,6 +14,15 @@
             </a>
         </small>
     </div>
+    <div class="row"></div>
+        <hr />
+        {{#if moreThanOneFloppy}}
+            <h3>✅ Your website can fit on a single floppy!</h3>
+        {{else}}
+            <h3>❌ Your website cannot fit on a single floppy!</h3>
+        {{/if}}
+    </div>
+
     <div class="row">
         <table class="u-full-width">
             <thead>
@@ -24,6 +33,18 @@
                 </tr>
             </thead>
             <tbody>
+                <tr class="summary">
+                    <td colspan="2">All files</td>
+                    <td>
+                        {{showSize total_size}} fitting on {{floppies}} floppies
+                    </td>
+                </tr>
+                <tr class="summary">
+                    <td colspan="2">Floppy {{times floppies "💾"}}</td>
+                    <td>
+                        {{showSize floppy_size}}
+                    </td>
+                </tr>
                 <tr>
                     <td>HTML</td>
                     <td>Static</td>
@@ -33,39 +54,6 @@
                 {{> multilineTableRow image_files }}
                 {{> multilineTableRow css_files }}
             </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2">All files</td>
-                    <td>
-                        {{showSize total_size}} fitting on {{floppies}} floppies
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">Floppy {{times floppies "💾"}}</td>
-                    <td>
-                        {{showSize floppy_size}}
-                    </td>
-                </tr>
-            </tfoot>
         </table>
     </div>
-    {{#if moreThanOneFloppy}}
-        <div class="row">
-            <h3>Congratulations, your website can fit on a single floppy!</h3>
-            <div class='embed-container'>
-                <iframe src='https://www.youtube.com/embed/wy7ZBX9BTUA' frameborder='0' allowfullscreen></iframe>
-            </div>
-        </div>
-    {{else}}
-        <div class="row">
-            <h3>Unfortunately, your website cannot fit on a single floppy!</h3>
-            <p>
-                Don't fear, there are things you can do to decrease page load size!
-            </p>
-            <ul>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-    {{/if}}
 </div>

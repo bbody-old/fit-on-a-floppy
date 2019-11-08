@@ -1,21 +1,44 @@
+@import "skeleton-alerts"
+$grey: #E1E1E1
+body
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
+
+#inputRow
+  border-top: 1px solid $grey
+  margin-top: 3.6rem
+  padding-top: 1rem
 #outputRow
   .loader
     display: none
+  border-top: 1px solid $grey
   &.loading
+    min-height: 100px
+    position: relative
+    border: 1px solid $grey
     .loader
+      margin-top: 15px
       display: block
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      margin: 0
     #output
       display: none
   &.loaded
+    border: 0
     .loader
       display: none
     #output
       display: block
-
+#tipsRow
+  margin-top: 3.6rem
+  h3
+    margin-bottom: 1rem
 #output
   display: none
   padding: 2.5rem 3rem
-  border: 1px solid #E1E1E1
+  border: 1px solid $grey
   border-radius: 4px
   margin: 0 .2rem
 
@@ -82,7 +105,12 @@ ul
   margin-bottom: 0.5rem
   li
     margin-bottom: 0
-
+thead
+  tr
+    td
+      font-weight: bold
+body
+  padding-bottom: 100px
 @media (max-width: 800px)
   .hide-on-mobile
     display: none

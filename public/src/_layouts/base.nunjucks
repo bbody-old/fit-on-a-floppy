@@ -10,13 +10,12 @@
 
   <head>
     <meta charset="utf-8"/>
-    <title>Fit On A Floppy</title>
+    <title>Fit on a Floppy</title>
     <meta name="description" content="A tool for determining website size"/>
     <meta name="author" content="Brendon Body"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
     <link rel="stylesheet" href="{{baseUrl}}styles/main.css"/>
@@ -27,8 +26,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#142226">
-    <meta name="apple-mobile-web-app-title" content="Fit On A Floppy">
-    <meta name="application-name" content="Fit On A Floppy">
+    <meta name="apple-mobile-web-app-title" content="Fit on a Floppy">
+    <meta name="application-name" content="Fit on a Floppy">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>

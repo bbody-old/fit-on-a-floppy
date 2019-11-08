@@ -4,74 +4,173 @@
   <div class="container">
     <div class="row">
       <h1>Fit on a Floppy</h1>
-      <strong>1.44mb</strong> <span>Floppy Disk capacity</span>
+      <strong>1.44mb</strong>
+      <span>Floppy Disk capacity</span>
     </div>
     <div class="row">
       <div class="two-thirds column value" id="content">
-          <div class="row">
-            <div class="one-half column">
-              <p>
-                Websites are getting bigger and bigger. The internet is getting faster and faster but not everywhere at the same pace. I find that a physical reminder of how big your site really is very useful.
-              </p>
-            </div>
-            <div class="one-half column">
+        <div class="row">
+          <div class="one-half column">
+            Websites are getting bigger and bigger. The internet is getting faster and faster but not everywhere at the same pace. A floppy is a physical reminder of filesize.
+            <br/>
+            <strong>Assets Audited</strong>
+            <ul>
+              <li>HTML</li>
+              <li>
+                CSS/Fonts
+              </li>
+              <li>
+                JavaScript
+              </li>
+              <li>
+                Images (exlcuding inline data source)
+              </li>
+            </ul>
+          </div>
+          <div class="one-half column">
               How long to <href a="https://kenstechtips.com/index.php/download-speeds-2g-3g-and-4g-actual-meaning">download on various mobile devices</a>:
               <ul>
-                <li>
-                  <strong>2G EDGE (0.1Mbit/s):</strong> 2 minutes
+              <li>
+                <strong>2G EDGE (0.1Mbit/s):</strong> 2 minutes
                 </li>
-                <li>
-                  <strong>3G HSPA (~1.5Mbit/s):</strong> 8 seconds
+              <li>
+                <strong>3G HSPA (~1.5Mbit/s):</strong> 8 seconds
                 </li>
-                <li>
-                  <strong>4G LTE Category 4 (~15Mbit/s):</strong> less than 1 second
+              <li>
+                <strong>4G LTE Category 4 (~15Mbit/s):</strong> less than 1 second
                 </li>
-                <li>
-                  <strong>5G (~150Mbit/s):</strong> less than 1 second
+              <li>
+                <strong>5G (~150Mbit/s):</strong> less than 1 second
                 </li>
-              </ul>
-            </div>
+            </ul>
           </div>
+        </div>
       </div>
       <div class="one-third column value hide-on-mobile">
-          <img src="./images/floppy.jpg" alt="Single Floppy Disk" class="u-max-full-width" />
-          <small>
-            <a href="https://twitter.com/bill_gross/status/920406104911233024?lang=en">3D Printed Save Icon
+        <img src="./images/floppy.jpg" alt="Single Floppy Disk" class="u-max-full-width"/>
+        <small>
+          <a href="https://twitter.com/bill_gross/status/920406104911233024?lang=en">3D Printed Save Icon
           </small>
+        </div>
       </div>
-    </div>
-    <hr/>
-    <div id="inputRow" class="row">
-      <form onsubmit="onSubmit(event)">
+      <hr/>
+      <div id="inputRow" class="row">
+        <form onsubmit="onSubmit(event)">
           <div class="row">
             <h2>Will it fit?</h2>
           </div>
           <div class="row">
-            <div class="eight columns">
-              <input class="u-full-width" placeholder="Website" id="website" name="website" type="url" required="required" />
-            </div>
-            <div class="four columns">
-                <button type="submit" class="button-primary u-full-width">
-                  Go! <div class="lds-dual-ring"></div>
-                </button>
-            </div>
+            <p class="alert alert-error" style="display: none">test</p>
           </div>
           <div class="row">
-            <strong>Ignored filetypes:</strong>
-            <ul>
-              <li>Video</li>
-              <li>Audio</li>
-              <li>PDF</li>
-              <li>Files other than images, stylesheets, fonts and JavaScript</li>
-            </ul>
+            <div class="eight columns">
+              <input class="u-full-width" placeholder="Website" id="website" name="website" type="url" required="required"/>
+            </div>
+            <div class="four columns">
+              <button type="submit" class="button-primary u-full-width">
+                  Go! <div class="lds-dual-ring"></div>
+              </button>
+            </div>
           </div>
         </form>
-    </div>
-    <hr/>
-    <div id="outputRow" class="row">
+      </div>
+      <div id="outputRow" class="row">
         <div class="loader"></div>
-        <div id="output" class="twelve columns">
+        <div id="output" class="twelve columns"></div>
+      </div>
+      <div id="tipsRow" class="row">
+        <h3>Some tips to reduce page size</h3>
+        <div class="row">
+          <div class="one-third column">
+            <ul>
+              <li>
+                <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching">Use server cache</a>
+              </li>
+              <li>
+                <a href="https://www.cloudflare.com/learning/performance/why-minify-javascript-code/">Minify JS</a>
+              </li>
+              <li>
+                <a href="https://blog.logrocket.com/the-complete-best-practices-for-minifying-css/">Minify CSS</a>
+              </li>
+              <li>
+                <a href="https://www.sitepoint.com/five-techniques-lazy-load-images-website-performance/">Lazy load images</a>
+              </li>
+              <li>
+                <a href="https://imagemagick.org/index.php">Compress/reduce image dimensions</a>
+              </li>
+              <li>
+                <a href="https://betterexplained.com/articles/how-to-optimize-your-site-with-gzip-compression/">GZIP assets</a>
+              </li>
+            </ul>
+          </div>
+          <div class="one-third column">
+            <ul>
+              <li>
+                <a href="https://www.globaldots.com/content-delivery-network-explained">Leverage CDN</a>
+              </li>
+              <li>
+                <a href="https://www.keycdn.com/blog/remove-unused-css">Remove unused CSS</a>
+              </li>
+              <li>
+                <a href="https://www.smashingmagazine.com/2015/08/understanding-critical-css/">Leverage critical CSS</a>
+              </li>
+              <li>
+                <a href="https://www.sitepoint.com/svg-good-for-website-performance/">Use SVG where possible</a>
+              </li>
+              <li>
+                <a href="https://rigor.com/blog/how-to-minify-html">Minify HTML</a>
+              </li>
+              <li>
+                <a href="https://flaviocopes.com/javascript-async-defer/">Async load JavaScript</a>
+              </li>
+            </ul>
+          </div>
+          <div class="one-third column">
+            <ul>
+              <li>
+                <a href="https://www.filamentgroup.com/lab/async-css.html">Async load CSS</a>
+              </li>
+              <li>Remove unused/redundant assets</li>
+              <li>Leverage browser cache</li>
+              <li>Reduce number of requests</li>
+              <li>Reduce number of fonts</li>
+              <li>Optimize server code</li>
+            </ul>
+          </div>
         </div>
+        <div class="row">
+          <div class="one-half column">
+            <h3>Audit tools</h3>
+            <ul>
+              <li>
+                <a href="https://developers.google.com/web/tools/lighthouse">Google Lighthouse</a> - audit tool for performance
+              </li>
+              <li>
+                <a href="https://gtmetrix.com/">GT Metrix</a> - breakdown of areas to improve
+              </li>
+              <li>
+                <a href="https://tools.pingdom.com/">Pingdom Website Speed Test</a> - test page speed from different locations
+              </li>
+            </ul>
+          </div>
+          <div class="one-half column">
+            <h3>Other resources</h3>
+            <ul>
+              <li>
+                <a href="https://github.com/davidsonfellipe/awesome-wpo">Github List of Blogs/Articles/Books on Web performance</a>
+              </li>
+              <li>
+                <a href="https://blog.dareboost.com/en/">Dareboost blog</a>
+              </li>
+              <li>
+                <a href="https://css-tricks.com/tag/performance/">CSS Tricks performance tag</a>
+              </li>
+              <li>
+                <a href="https://speedchecklist.com/">Checklist of performance tips</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-{% endblock %}
+  {% endblock %}

@@ -41,9 +41,10 @@ function showResults(data) {
 
 window.onSubmit = function (event) {
     event.preventDefault();
-    
+    document.getElementById('output').innerHTML = '';
+    removeClass('loaded');
     addClass('loading');
-
+    
     var endpointURL = 'https://7udyio7rpg.execute-api.us-west-2.amazonaws.com/default/pageSize';
     var url = event.currentTarget[0].value;
 
