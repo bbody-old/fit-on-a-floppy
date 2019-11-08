@@ -1,7 +1,7 @@
 import json
 from Website import Website
 
-origin = "*"
+origin = "http://fitonafloppy.website"
 
 def handler(event, context):
     url = json.loads(event['body'])['url']
