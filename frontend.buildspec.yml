@@ -1,0 +1,26 @@
+# Do not change version. This is the version of aws buildspec, not the version of your buldspec file.
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm --prefix ./public/ install
+  build:
+    commands:
+      - echo Building website
+      - npm run --prefix ./public/ build
+  post_build:
+    commands:
+      - rm *.sh
+      - rm .gitignore
+      - rm *.yml
+      - rm LICENSE README.md
+      - rm *.py
+      - mv public/build/* ./
+      - rm -r public
+artifacts:
+  files:
+    - '**/*'

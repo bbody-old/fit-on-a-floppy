@@ -1,0 +1,40 @@
+# Do not change version. This is the version of aws buildspec, not the version of your buldspec file.
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+    commands:
+      - echo Installing Python 3.6
+      - wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
+      - tar xJf Python-3.6.0.tar.xz
+      - cd Python-3.6.0
+      - ./configure
+      - make
+      - make install
+      - mkdir package
+      - echo Setup pip
+      - python3 -m pip install --upgrade pip
+      - cd ../
+      - echo Installing Python libraries
+      - pip install --target ./package beautifulsoup4
+      - pip install --target ./package urllib3
+      - pip install --target ./package requests
+      - cd ./package
+      - zip -r9 ../function.zip ./
+      - cd ..
+  build:
+    commands:
+      - echo Zip up application code
+      - zip -g function.zip index.py
+      - zip -g function.zip Website.py
+# Include only the files required for your application to run.
+# Do not use recursively include artifacts from node_modules directory as it will include unnecessary packages 
+# used only for building and testing.
+# ExpressJS apps will need other artifact directories included (bin/*, public/*, routes/*, views/* etc).
+artifacts:
+  files:
+    - function.zip
+    - deploy.buildspec.yml
+    - deploy-lambda.sh

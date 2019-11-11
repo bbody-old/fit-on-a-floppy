@@ -1,0 +1,11 @@
+# Do not change version. This is the version of aws buildspec, not the version of your buldspec file.
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.7 
+  build:
+    commands:
+      - echo Deploy to Lambda
+      - ./deploy-lambda.sh
