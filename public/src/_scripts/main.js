@@ -1,6 +1,6 @@
 'use strict';
 
-var endpointURL = 'https://7udyio7rpg.execute-api.us-west-2.amazonaws.com/default/pageSize';
+var endpointURL = 'https://api.fitonafloppy.website/default/pageSize';
 var addHelpers = require('../_templates/helpers.js');
 
 addHelpers(Handlebars);
