@@ -14,7 +14,6 @@ class Website:
         self.favicon = False
         self.title = ''
     def parseWebsite(self):
-        print(self.url)
         page = requests.get(self.url, stream=True)
         content = BeautifulSoup(page.content, 'html.parser')
 
