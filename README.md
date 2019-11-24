@@ -17,7 +17,7 @@ Websites are getting bigger and bigger. The internet is getting faster and faste
 ## Built with
 
 - Python *3.6* - Serverless function
-- NodeJS 12 - Frontend build process
+- NodeJS *12* - Frontend build process
 - Gulp - Build process
 - Handlebars - In code templating
 - Nunjucks - HTML templating
