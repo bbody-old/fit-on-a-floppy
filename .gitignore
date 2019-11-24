@@ -4,3 +4,4 @@ function.zip
 .vscode
 __pycache__
 v-env
+*.pyc

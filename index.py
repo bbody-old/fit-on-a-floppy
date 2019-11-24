@@ -6,12 +6,15 @@ origin = "https://fitonafloppy.website"
 def handler(event, context):
     url = json.loads(event['body'])['url']
     is_https = json.loads(event['body'])['https']
+    
+    url = url.replace('https://', '')
+    url = url.replace('http://', '')
 
     if (is_https):
         url = "https://" + url
     else:
         url = "http://" + url
-    
+
     print("Processing " + url)
 
     website = Website(url)
