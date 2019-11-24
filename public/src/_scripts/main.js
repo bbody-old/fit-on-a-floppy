@@ -83,13 +83,13 @@ window.onSubmit = function (event) {
 
 window.onload = function () {
     // Can't seem to set type="text" without it being stripped out by Nunjucks
-    // document.getElementById('website').setAttribute('type', 'text');
+    document.getElementById('website').setAttribute('type', 'text');
 
     var urlParams = new URLSearchParams(window.location.search);
 
     if (urlParams.has('website') && urlParams.has('https')) {
         var website = urlParams.get('website');
-        var protocol = urlParams.get('https');
+        var protocol = urlParams.get('https') ? "https" : "http";
         document.getElementById('website').value = website;
         document.getElementById('protocol').value = protocol;
         checkIfItWillFit(website, protocol);
