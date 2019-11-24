@@ -42,7 +42,13 @@ class Website:
             favicon = False
         self.favicon = favicon
     def setJSFiles(self, content):
-        js_files = content.select('script[src]:not([async])')
+        js_query = content.select('script[src]')
+        js_files = []
+
+        for js in js_query:
+            if ((not js.has_attr('defer')) and (not js.has_attr('async'))):
+                js_files.append(js)
+
         self.js_files = Website.parse_files('Scripts', self.url, js_files, 'src')
     def setCSSFiles(self, content):
         css_files = content.select('link[rel="stylesheet"]')
@@ -52,7 +58,7 @@ class Website:
         image_files = []
 
         for image in image_query:
-            if (not image['src'].startswith('data:')):
+            if ((image.has_attr('src')) and (not image['src'].startswith('data:'))):
                 image_files.append(image)
 
         self.image_files = Website.parse_files('Images', self.url, image_files, 'src')
