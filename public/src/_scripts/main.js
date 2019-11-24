@@ -89,7 +89,7 @@ window.onload = function () {
 
     if (urlParams.has('website') && urlParams.has('https')) {
         var website = urlParams.get('website');
-        var protocol = urlParams.get('https') ? "https" : "http";
+        var protocol = urlParams.get('https') === "false" ? "http" : "https";
         document.getElementById('website').value = website;
         document.getElementById('protocol').value = protocol;
         checkIfItWillFit(website, protocol);
