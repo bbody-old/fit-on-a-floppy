@@ -62,10 +62,16 @@
             <p id="alert" class="alert alert-error" style="display: none">test</p>
           </div>
           <div class="row">
-            <div class="eight columns">
-              <input class="u-full-width" placeholder="Webpage URL" id="website" name="website" type="url" required="required"/>
+            <div class="two columns">
+              <select class="u-full-width" id="protocol">
+                <option value="https">https://</option>
+                <option value="http">http://</option>
+              </select>
             </div>
-            <div class="four columns">
+            <div class="seven columns">
+              <input type="text" class="u-full-width" placeholder="Webpage e.g. www.google.com" id="website" name="website" required="required" />
+            </div>
+            <div class="three columns">
               <button type="submit" class="button-primary u-full-width">
                   Go! <div class="lds-dual-ring"></div>
               </button>

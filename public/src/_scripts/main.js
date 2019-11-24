@@ -45,7 +45,7 @@ function showResults(data) {
     outputMessage(html);
 }
 
-function checkIfItWillFit(url) {
+function checkIfItWillFit(url, protocol) {
     toggleAlert(false);
     document.getElementById('output').innerHTML = '';
     document.getElementById('alert').innerHTML = '';
@@ -61,32 +61,38 @@ function checkIfItWillFit(url) {
         } else {
             var json = JSON.parse(xhr.responseText);
             showResults(json);
-
-            var newUrl = "?website=" + url;
+            var https = protocol === "https";
+            var newUrl = "?website=" + url + "&https=" + https;
             var title = "Fit on a Floppy - " + json.title;
-            History.pushState({ website: url}, title, newUrl);
+            History.pushState({ website: url, https}, title, newUrl);
             document.title = title;
         }
     };
     xhr.onerror = showError;
     xhr.send(JSON.stringify({
-        url
+        url,
+        https: protocol === "https"
     }));
 }
 
 window.onSubmit = function (event) {
     event.preventDefault();
 
-    checkIfItWillFit(event.currentTarget[0].value);
+    checkIfItWillFit(event.currentTarget[1].value, event.currentTarget[0].value);
 };
 
 window.onload = function () {
-    const urlParams = new URLSearchParams(window.location.search);
+    // Can't seem to set type="text" without it being stripped out by Nunjucks
+    // document.getElementById('website').setAttribute('type', 'text');
 
-    if (urlParams.has('website')) {
+    var urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has('website') && urlParams.has('https')) {
         var website = urlParams.get('website');
+        var protocol = urlParams.get('https');
         document.getElementById('website').value = website;
-        checkIfItWillFit(urlParams.get('website'));
+        document.getElementById('protocol').value = protocol;
+        checkIfItWillFit(website, protocol);
     }
 };
 
