@@ -11,7 +11,7 @@
   <head>
     <meta charset="utf-8"/>
     <title>Fit on a Floppy</title>
-    <meta name="description" content="A tool for determining website size"/>
+    <meta name="description" content="A tool for determining if your webpage can fit on a 3.5 inch floppy disk"/>
     <meta name="author" content="Brendon Body"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -43,6 +43,7 @@
     <div id="codefund"></div>
     <script src="https://cdn.jsdelivr.net/npm/classlist-polyfill@1.2.0/src/index.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.2.0/handlebars.runtime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/history.js/1.8/native.history.min.js"></script>
     <script src="{{baseUrl}}scripts/main.js"></script>
     <script src="{{baseUrl}}scripts/templates.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->

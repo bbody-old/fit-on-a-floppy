@@ -62,12 +62,10 @@ function checkIfItWillFit(url) {
             var json = JSON.parse(xhr.responseText);
             showResults(json);
 
-            if (window.history.pushState) {
-                var newUrl = location.origin + "?website=" + url;
-                var title = "Fit on a Floppy - " + json.title;
-                document.title = title;
-                history.pushState({}, null, newUrl);
-            }
+            var newUrl = "?website=" + url;
+            var title = "Fit on a Floppy - " + json.title;
+            History.pushState({ website: url}, title, newUrl);
+            document.title = title;
         }
     };
     xhr.onerror = showError;
