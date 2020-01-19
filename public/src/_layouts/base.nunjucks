@@ -41,6 +41,7 @@
 
     {% block content %}{% endblock %}
     <div id="codefund"></div>
+    <div id="issue-embed"></div>
     <script src="https://cdn.jsdelivr.net/npm/classlist-polyfill@1.2.0/src/index.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.2.0/handlebars.runtime.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/history.js/1.8/native.history.min.js"></script>
@@ -59,6 +60,14 @@
       src="https://codefund.io/properties/551/funder.js"
       async="async"
     ></script>
+    
+    <script src="https://cdn.issueembed.dev/issue-embed.min.js"></script>
+    <script>
+        window.onload = function() {
+            issueEmbed.init("#issue-embed", "755470cf-4d50-f6c6-96e9-e9c6a8457362", "MIDDLE-BOTTOM");
+        };
+    </script>
     {% block scripts %}{% endblock %}
+    
   </body>
 </html>
