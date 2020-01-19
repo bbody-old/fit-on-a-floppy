@@ -64,7 +64,7 @@
     <script src="https://cdn.issueembed.dev/issue-embed.min.js"></script>
     <script>
         window.onload = function() {
-            issueEmbed.init("#issue-embed", "755470cf-4d50-f6c6-96e9-e9c6a8457362", "MIDDLE-BOTTOM");
+            issueEmbed.init("#issue-embed", "755470cf-4d50-f6c6-97e9-e9c6a8457362", "MIDDLE-BOTTOM");
         };
     </script>
     {% block scripts %}{% endblock %}
