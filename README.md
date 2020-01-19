@@ -7,6 +7,7 @@ Websites are getting bigger and bigger. The internet is getting faster and faste
 
 - [Website](https://fitonafloppy.website/)
 - [Blog Post](https://www.brendonbody.com/2019/11/13/fit-on-a-floppy/)
+- [Hacker News Discussion](https://news.ycombinator.com/item?id=21609386)
 
 ## Architecture
 
