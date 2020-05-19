@@ -9,7 +9,7 @@
     "@babel/core": "~7.0.0",
     "@babel/preset-env": "~7.0.0",
     "@babel/register": "~7.4.4",
-    "acorn": "~6.2.0",
+    "acorn": "~6.4.1",
     "autoprefixer": "~9.6.1",
     "babel-eslint": "~9.0.0",
     "babelify": "~10.0.0",
