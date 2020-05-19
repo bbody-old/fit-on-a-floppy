@@ -181,5 +181,11 @@
           </div>
         </div>
       </div>
+    
+    <div id="ad" class="row">
+      <div class="twelve columns">
+        <div id="carbonads"></div>
+      </div>
     </div>
+  </div>
   {% endblock %}
