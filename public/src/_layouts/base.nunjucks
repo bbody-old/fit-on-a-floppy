@@ -33,40 +33,25 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
   </head>
   <body>
-    <style>#forkongithub a{background:#33c3f0;color:#fff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#0077A4;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:600px){ #forkongithub{position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/bbody/fit-on-a-floppy">Fork me on GitHub</a></span>    <!--[if lt IE 11]>
+    <span id="forkongithub"><a href="https://github.com/bbody/fit-on-a-floppy">Fork me on GitHub</a></span>    <!--[if lt IE 11]>
     <p class="browsehappy">
       You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
     </p>
     <![endif]-->
 
     {% block content %}{% endblock %}
-    <div id="codefund"></div>
-    <div id="issue-embed"></div>
+    
+    {% include "./partials/code-ad.nunjucks" %}
+    {% include "./partials/issue-embed.nunjucks" %}
+    
     <script src="https://cdn.jsdelivr.net/npm/classlist-polyfill@1.2.0/src/index.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.2.0/handlebars.runtime.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/history.js/1.8/native.history.min.js"></script>
     <script src="{{baseUrl}}scripts/main.js"></script>
     <script src="{{baseUrl}}scripts/templates.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151167396-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-151167396-1');
-    </script>
-    <script
-      src="https://codefund.io/properties/551/funder.js"
-      async="async"
-    ></script>
     
-    <script src="https://cdn.issueembed.dev/issue-embed.min.js"></script>
-    <script>
-        window.onload = function() {
-            issueEmbed.init("#issue-embed", "755470cf-4d50-f6c6-97e9-e9c6a8457362", "MIDDLE-BOTTOM");
-        };
-    </script>
+    {% include "./partials/google-analytics.nunjucks" %}
+    
     {% block scripts %}{% endblock %}
     
   </body>
