@@ -1,7 +1,6 @@
 {% extends '_layouts/base.nunjucks' %}
 
 {% block content %}
-  <div class="container">
     <div class="row">
       <h1>Fit on a Floppy</h1>
       <strong>1.44mb</strong>
@@ -180,12 +179,5 @@
             </ul>
           </div>
         </div>
-      </div>
-    
-    <div id="ad" class="row">
-      <div class="twelve columns">
-        <div id="carbonads"></div>
-      </div>
-    </div>
-  </div>
+      </div>    
   {% endblock %}

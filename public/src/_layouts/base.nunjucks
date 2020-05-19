@@ -39,10 +39,10 @@
     </p>
     <![endif]-->
 
-    {% block content %}{% endblock %}
-    
-    {% include "./partials/code-ad.nunjucks" %}
-    {% include "./partials/issue-embed.nunjucks" %}
+    <div class="container">
+      {% block content %}{% endblock %}
+      {% include "./partials/carbon-ad.nunjucks" %}
+    </div>
     
     <script src="https://cdn.jsdelivr.net/npm/classlist-polyfill@1.2.0/src/index.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.2.0/handlebars.runtime.min.js"></script>
@@ -53,6 +53,6 @@
     {% include "./partials/google-analytics.nunjucks" %}
     
     {% block scripts %}{% endblock %}
-    
+    {% include "./partials/issue-embed.nunjucks" %}
   </body>
 </html>
