@@ -81,18 +81,16 @@ window.onSubmit = function (event) {
     checkIfItWillFit(event.currentTarget[1].value, event.currentTarget[0].value);
 };
 
-window.onload = function () {
-    // Can't seem to set type="text" without it being stripped out by Nunjucks
-    document.getElementById('website').setAttribute('type', 'text');
 
-    var urlParams = new URLSearchParams(window.location.search);
+// Can't seem to set type="text" without it being stripped out by Nunjucks
+document.getElementById('website').setAttribute('type', 'text');
 
-    if (urlParams.has('website') && urlParams.has('https')) {
-        var website = urlParams.get('website');
-        var protocol = urlParams.get('https') === "false" ? "http" : "https";
-        document.getElementById('website').value = website;
-        document.getElementById('protocol').value = protocol;
-        checkIfItWillFit(website, protocol);
-    }
-};
+var urlParams = new URLSearchParams(window.location.search);
 
+if (urlParams.has('website') && urlParams.has('https')) {
+    var website = urlParams.get('website');
+    var protocol = urlParams.get('https') === "false" ? "http" : "https";
+    document.getElementById('website').value = website;
+    document.getElementById('protocol').value = protocol;
+    checkIfItWillFit(website, protocol);
+}
